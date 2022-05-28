@@ -1,3 +1,12 @@
+
+import useEvent from '../../../hooks/api/useEvent';
+
 export default function Payment() {
-  return 'Pagamento: Em breve!';
+  const { event } = useEvent(); 
+
+  return (
+    <>
+    
+    </>
+  );
 }
