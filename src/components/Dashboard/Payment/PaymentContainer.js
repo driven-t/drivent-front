@@ -28,6 +28,12 @@ p{
     line-height: 23px;
 
     padding-bottom: 17px;
+
+
+}
+
+bold{
+    font-weight: bolder;
 }
 
 `;
