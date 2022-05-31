@@ -3,27 +3,36 @@ import { useTicket } from '../../../hooks/useTicket';
 import { useEffect, useState } from 'react';
 import { getPersonalInformations } from '../../../services/enrollmentApi';
 import useEnrollment from '../../../hooks/api/useEnrollment';
+import { BookTicketButton } from '../../../components/Dashboard/Payment/BookTicketButton';
 import styled from 'styled-components';
 import TicketSelection from './TicketSelection';
 import HostSelection from './HostSelection';
 
 export default function Payment() {
   const { event } = useEvent();
+  const { enrollment } = useEnrollment();
   const { ticketData, setTicketData } = useTicket();
   const [selectedTicketModality, setSelectedTicketModality] = useState('');
   const [selectedHostModality, setSelectedHostModality] = useState('');
-  let { enrollment } = useEnrollment();
-
+  const [modalityPrice, setModalityPrice] = useState(0);
+  const [accommodationPrice, setAccommodationPrice] = useState(0);
+  
   function handleModalityClick(string) {
     if (string === selectedTicketModality) {
+      setAccommodationPrice(0);
       setSelectedTicketModality('');
+      setSelectedHostModality('');
       setTicketData({ ...ticketData, isOnline: null });
     } else {
       setSelectedTicketModality(string);
       if (string === 'presential') {
         setTicketData({ ...ticketData, isOnline: false });
+        setModalityPrice(event.presentialPrice);
       } else {
+        setSelectedHostModality('');
+        setAccommodationPrice(0);
         setTicketData({ ...ticketData, isOnline: true });
+        setModalityPrice(event.onlinePrice);
       }
     }
   }
@@ -32,12 +41,15 @@ export default function Payment() {
     if (string === selectedHostModality) {
       setSelectedHostModality('');
       setTicketData({ ...ticketData, withAccommodation: null });
+      setAccommodationPrice(0);
     } else {
       setSelectedHostModality(string);
       if (string === 'with-accommodation') {
         setTicketData({ ...ticketData, withAccommodation: true });
+        setAccommodationPrice(event.accommodationPrice);
       } else {
         setTicketData({ ...ticketData, withAccommodation: false });
+        setAccommodationPrice(0);
       }
     }
   }
@@ -75,6 +87,15 @@ export default function Payment() {
           event={event}
         />
       )}
+      
+      {
+        (selectedTicketModality === 'online' || (selectedTicketModality === 'presential' && selectedHostModality)) &&
+          <>
+            <p> Fechado! O total ficou em <strong> {`R$ ${modalityPrice + accommodationPrice}`} </strong> Agora é só confirmar: </p>
+            <BookTicketButton> RESERVAR INGRESSO </BookTicketButton>
+          </>
+      }
+
     </PaymentContainer>
   );
 }
