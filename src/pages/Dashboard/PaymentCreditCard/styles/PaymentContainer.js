@@ -10,6 +10,7 @@ const PaymentContainer = styled.div`
 
   font-family: 'Roboto';
   font-style: normal;
+  align-items: flex-start;
 
   h1 {
     font-weight: 400;
