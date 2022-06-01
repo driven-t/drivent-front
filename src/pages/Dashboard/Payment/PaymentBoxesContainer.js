@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 
 const PaymentBoxesContainer = styled.div`
+  width: auto;
+  height: 145px;
 
-width: auto;
-height: 145px;
+  display: flex;
 
-display: flex;
-
-gap: 24px;
-
+  gap: 24px;
 `;
 
 export { PaymentBoxesContainer };
