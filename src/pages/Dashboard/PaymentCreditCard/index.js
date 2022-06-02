@@ -9,13 +9,13 @@ import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import { CreditCard } from './styles/CreditCard';
 import CreditCardForm from './CreditCardForm';
-import { ConfirmPaymentButton } from './styles/BookTicketButton';
+import { ConfirmPaymentButton } from './styles/ConfirmPaymentButton';
 
 function PaymentCreditCard() {
   const { event } = useEvent();
   const { ticketData } = useTicket();
 
-  const [creditCardData, setcreditCardData] = useState({
+  const [creditCardData, setCreditCardData] = useState({
     cvc: '',
     expiry: '',
     focus: '',
@@ -57,7 +57,7 @@ function PaymentCreditCard() {
           number={creditCardData.number}
         />
 
-        <CreditCardForm creditCardData={creditCardData} setcreditCardData={setcreditCardData} />
+        <CreditCardForm creditCardData={creditCardData} setCreditCardData={setCreditCardData} />
       </CreditCard>
 
       <ConfirmPaymentButton onClick={() => {}}>FINALIZAR PAGAMENTO</ConfirmPaymentButton>

@@ -1,20 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import InputMask from 'react-input-mask';
 
-export default function CreditCardForm({ creditCardData, setcreditCardData }) {
+export default function CreditCardForm({ creditCardData, setCreditCardData }) {
   function handleChangeForm({ target }) {
-    setcreditCardData({ ...creditCardData, [target.name]: target.value });
+    setCreditCardData({ ...creditCardData, [target.name]: target.value });
   }
 
   function handleInputFocus({ target }) {
-    setcreditCardData({ ...creditCardData, focus: target.name });
+    setCreditCardData({ ...creditCardData, focus: target.name });
   }
 
   return (
     <Container>
       <form>
         <MainInput
-          maxLength={16}
+          mask="9999999999999999"
+          maskChar=""
           name="number"
           value={creditCardData.number}
           placeholder={'Card Number'}
@@ -25,9 +27,8 @@ export default function CreditCardForm({ creditCardData, setcreditCardData }) {
         <p>E.g.: 49..., 51,..., 36..., 37</p>
 
         <MainInput
-          maxLength={50}
+          maxLength={30}
           name="name"
-          type="number"
           value={creditCardData.name}
           placeholder={'Name'}
           onChange={handleChangeForm}
@@ -36,15 +37,17 @@ export default function CreditCardForm({ creditCardData, setcreditCardData }) {
 
         <div>
           <ValidThruInput
-            maxLength={4}
+            mask="99/99"
             name="expiry"
             value={creditCardData.expiry}
             placeholder={'Valid Thru'}
             onChange={handleChangeForm}
             onFocus={handleInputFocus}
           />
+
           <CVCInput
-            maxLength={4}
+            mask="9999"
+            maskChar=""
             name="cvc"
             value={creditCardData.cvc}
             placeholder={'CVC'}
@@ -71,7 +74,7 @@ export const Container = styled.div`
   }
 `;
 
-export const MainInput = styled.input`
+export const MainInput = styled(InputMask)`
   all: unset;
   box-sizing: border-box;
   border: solid 2px #ddd;
@@ -81,7 +84,7 @@ export const MainInput = styled.input`
   padding: 0 10px;
 `;
 
-export const ValidThruInput = styled.input`
+export const ValidThruInput = styled(InputMask)`
   all: unset;
   box-sizing: border-box;
   border: solid 2px #ddd;
@@ -91,7 +94,7 @@ export const ValidThruInput = styled.input`
   width: 210px;
 `;
 
-export const CVCInput = styled.input`
+export const CVCInput = styled(InputMask)`
   all: unset;
   box-sizing: border-box;
   border: solid 2px #ddd;
