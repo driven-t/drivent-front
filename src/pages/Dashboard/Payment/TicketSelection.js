@@ -1,5 +1,5 @@
-import { PaymentBoxesContainer } from './PaymentBoxesContainer';
-import { ModalityBox, Modality, Price } from './ModalityBox';
+import { PaymentBoxesContainer } from './styles/PaymentBoxesContainer';
+import { ModalityBox, Modality, Price } from './styles/ModalityBox';
 
 export default function TicketSelection({ selectedTicketModality, handleModalityClick, event }) {
   return (

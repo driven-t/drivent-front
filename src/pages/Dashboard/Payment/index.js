@@ -6,8 +6,8 @@ import { useTicket } from '../../../hooks/useTicket';
 import useEnrollment from '../../../hooks/api/useEnrollment';
 import TicketSelection from './TicketSelection';
 import HostSelection from './HostSelection';
-import { PaymentContainer, MessageContainer } from './PaymentContainer';
-import { BookTicketButton } from './BookTicketButton';
+import { PaymentContainer, MessageContainer } from './styles/PaymentContainer';
+import { BookTicketButton } from './styles/BookTicketButton';
 
 export default function Payment() {
   const navigate = useNavigate();
