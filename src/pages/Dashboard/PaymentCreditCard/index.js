@@ -13,12 +13,14 @@ import { CreditCard } from './styles/CreditCard';
 import CreditCardForm from './CreditCardForm';
 import { ConfirmPaymentButton } from './styles/ConfirmPaymentButton';
 import usePayment from '../../../hooks/api/usePayment';
+import { ConfirmationContainer } from '../../../components/Dashboard/Payment/ConfirmationContainer';
+import CheckIcon from '../../../components/Icons/CheckIcon';
 
 function PaymentCreditCard() {
   const { event } = useEvent();
   const { ticketData } = useTicket();
   const { pay } = usePayment();
-  const [paymentCompletion, setPaymentCompletion] = useState(false);
+  const [paymentCompletion, setPaymentCompletion] = useState(true);
 
   const { enrollment } = useEnrollment();
   console.log(enrollment);
@@ -90,11 +92,17 @@ function PaymentCreditCard() {
         <Price>R$ {price}</Price>
       </SelectedBox>
 
+      <p>Pagamento</p>
       {paymentCompletion ? 
-        '' 
+        <ConfirmationContainer>
+          <CheckIcon radius={'50px'} color={'#36B853'}/>
+          <h3>
+            <h4 style={{ fontWeight: '500' }}>Pagamento confirmado!</h4>
+            <h4  >Prossiga para escolha de hospedagem e atividades</h4>
+          </h3>
+        </ConfirmationContainer>
         : 
         <>
-  `       <p>Pagamento</p>
           <CreditCard>
             <Cards
               cvc={creditCardData.cvc}
@@ -103,10 +111,10 @@ function PaymentCreditCard() {
               name={creditCardData.name}
               number={creditCardData.number}
             />
-  
+
             <CreditCardForm creditCardData={creditCardData} setCreditCardData={setCreditCardData} />
           </CreditCard>
-        
+
           <ConfirmPaymentButton onClick={() => confirmPayment()}> FINALIZAR PAGAMENTO </ConfirmPaymentButton>`
         </>
       }
