@@ -20,7 +20,7 @@ function PaymentCreditCard() {
   const { event } = useEvent();
   const { ticketData } = useTicket();
   const { pay } = usePayment();
-  const [paymentCompletion, setPaymentCompletion] = useState(true);
+  const [paymentCompletion, setPaymentCompletion] = useState(false);
 
   const { enrollment } = useEnrollment();
   console.log(enrollment);
