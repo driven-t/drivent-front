@@ -63,8 +63,6 @@ function PaymentCreditCard() {
 
   useEffect(calculatePrice, [event]);
 
-  console.log(ticketData);
-
   return (
     <PaymentContainer>
       <h1>Ingresso e pagamento</h1>

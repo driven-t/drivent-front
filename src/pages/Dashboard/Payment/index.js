@@ -55,17 +55,16 @@ export default function Payment() {
   function handleModalityClick(string) {
     setSelectedHostModality('');
     setTicketData({ ...ticketData, withAccommodation: null });
-    console.log('Resetou acomodação!');
-    console.log(ticketData);
+
     if (string === selectedTicketModality) {
       setSelectedTicketModality('');
-      setTicketData({ ...ticketData, isOnline: null });
+      setTicketData({ ...ticketData, withAccommodation: null, isOnline: null });
     } else {
       setSelectedTicketModality(string);
       if (string === 'presential') {
-        setTicketData({ ...ticketData, isOnline: false });
+        setTicketData({ ...ticketData, withAccommodation: null, isOnline: false });
       } else {
-        setTicketData({ ...ticketData, isOnline: true });
+        setTicketData({ ...ticketData, withAccommodation: null, isOnline: true });
       }
     }
   }
