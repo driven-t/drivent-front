@@ -23,9 +23,6 @@ function PaymentCreditCard() {
   const [paymentCompletion, setPaymentCompletion] = useState(false);
 
   const { enrollment } = useEnrollment();
-  console.log(enrollment);
-  console.log(event);
-  console.log(ticketData);
 
   const [creditCardData, setCreditCardData] = useState({
     cvc: '',
@@ -69,11 +66,9 @@ function PaymentCreditCard() {
 
     const result = await pay(paymentObject);
     if(result.status !== 201) {
-      console.log(result.data.message);
       toast.error(result.data.message);
     }
     else{
-      console.log(result.data);
       setPaymentCompletion(true);
     }
   }
