@@ -8,7 +8,7 @@ export default function HostSelection({ selectedHostModality, handleAccommodatio
 
       <PaymentBoxesContainer>
         <ModalityBox
-          selected={selectedHostModality === 'without-accommodation' ? true : false}
+          selected={selectedHostModality === 'without-accommodation'}
           onClick={() => {
             handleAccommodationClick('without-accommodation');
           }}
@@ -19,7 +19,7 @@ export default function HostSelection({ selectedHostModality, handleAccommodatio
         </ModalityBox>
 
         <ModalityBox
-          selected={selectedHostModality === 'with-accommodation' ? true : false}
+          selected={selectedHostModality === 'with-accommodation'}
           onClick={() => {
             handleAccommodationClick('with-accommodation');
           }}

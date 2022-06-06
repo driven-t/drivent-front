@@ -8,7 +8,7 @@ export default function TicketSelection({ selectedTicketModality, handleModality
 
       <PaymentBoxesContainer>
         <ModalityBox
-          selected={selectedTicketModality === 'presential' ? true : false}
+          selected={selectedTicketModality === 'presential'}
           onClick={() => {
             handleModalityClick('presential');
           }}
@@ -18,7 +18,7 @@ export default function TicketSelection({ selectedTicketModality, handleModality
         </ModalityBox>
 
         <ModalityBox
-          selected={selectedTicketModality === 'online' ? true : false}
+          selected={selectedTicketModality === 'online'}
           onClick={() => {
             handleModalityClick('online');
           }}

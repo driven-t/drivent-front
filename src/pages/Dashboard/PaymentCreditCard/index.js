@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import useEvent from '../../../hooks/api/useEvent';
 import { useTicket } from '../../../hooks/useTicket';
@@ -12,6 +13,8 @@ import CreditCardForm from './CreditCardForm';
 import { ConfirmPaymentButton } from './styles/ConfirmPaymentButton';
 
 function PaymentCreditCard() {
+  const navigate = useNavigate();
+
   const { event } = useEvent();
   const { ticketData } = useTicket();
 
@@ -24,7 +27,31 @@ function PaymentCreditCard() {
   });
   const [price, setPrice] = useState(0);
 
-  async function calculatePrice() {
+  function isTicketDataComplete() {
+    const isOnline = ticketData.isOnline;
+    const withAccommodation = ticketData.withAccommodation;
+
+    if (isOnline === null || isOnline === undefined) {
+      return false;
+    }
+
+    // isOnline being true is enough to complete the ticket
+    if (isOnline) {
+      return true;
+    }
+
+    if (withAccommodation === null || withAccommodation === undefined) {
+      return false;
+    }
+
+    return true;
+  }
+
+  if (!isTicketDataComplete()) {
+    navigate('/dashboard/payment');
+  }
+
+  function calculatePrice() {
     if (ticketData.isOnline) {
       setPrice(event?.onlinePrice);
     } else if (ticketData.withAccommodation) {
