@@ -1,5 +1,7 @@
 # drivent-front
 
+deploy
+
 Front-end for Driven.t, an event management solution.
 
 ## About
