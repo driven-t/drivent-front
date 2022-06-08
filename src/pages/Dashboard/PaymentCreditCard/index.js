@@ -72,7 +72,7 @@ function PaymentCreditCard() {
 
   async function confirmPayment() {
     let [month, year] = creditCardData.expiry.split('/');
-    year = '20'+year;
+    year = '20' + year;
 
     const paymentObject = {
       card: {
@@ -82,20 +82,17 @@ function PaymentCreditCard() {
         cvc: creditCardData.cvc,
       },
       ticket: {
-
         enrollmentId: enrollment.id,
         eventId: event.id,
         isOnline: ticketData.isOnline,
         withAccommodation: ticketData.withAccommodation,
-      }
-
-    }; 
+      },
+    };
 
     const result = await pay(paymentObject);
-    if(result.status !== 201) {
+    if (result.status !== 201) {
       toast.error(result.data.message);
-    }
-    else{
+    } else {
       setPaymentCompletion(true);
     }
   }
@@ -106,7 +103,7 @@ function PaymentCreditCard() {
     <PaymentContainer>
       <h1>Ingresso e pagamento</h1>
       <p> Ingresso escolhido </p>
-     
+
       <SelectedBox>
         <Modality>
           {ticketData.isOnline ? 'Online' : `Presencial + ${ticketData.withAccommodation ? 'Com Hotel' : 'Sem Hotel'}`}
@@ -115,15 +112,15 @@ function PaymentCreditCard() {
       </SelectedBox>
 
       <p>Pagamento</p>
-      {paymentCompletion ? 
+      {paymentCompletion ? (
         <ConfirmationContainer>
-          <CheckIcon radius={'50px'} color={'#36B853'}/>
-          <h3>
-            <h4 style={{ fontWeight: '500' }}>Pagamento confirmado!</h4>
-            <h4  >Prossiga para escolha de hospedagem e atividades</h4>
-          </h3>
+          <CheckIcon radius={'50px'} color={'#36B853'} />
+          <div>
+            <h3 style={{ fontWeight: '500' }}>Pagamento confirmado!</h3>
+            <h3>Prossiga para escolha de hospedagem e atividades</h3>
+          </div>
         </ConfirmationContainer>
-        : 
+      ) : (
         <>
           <CreditCard>
             <Cards
@@ -136,10 +133,9 @@ function PaymentCreditCard() {
 
             <CreditCardForm creditCardData={creditCardData} setCreditCardData={setCreditCardData} />
           </CreditCard>
-
           <ConfirmPaymentButton onClick={() => confirmPayment()}> FINALIZAR PAGAMENTO </ConfirmPaymentButton>`
         </>
-      }
+      )}
     </PaymentContainer>
   );
 }
