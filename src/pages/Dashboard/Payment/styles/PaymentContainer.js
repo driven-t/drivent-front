@@ -5,9 +5,12 @@ const MessageContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  width: 65%;
   word-wrap: break-word;
   text-align: center;
   align-self: center;
+
+  color: #8E8E8E;
 `;
 
 const PaymentContainer = styled.div`
