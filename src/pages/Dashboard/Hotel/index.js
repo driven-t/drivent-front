@@ -24,9 +24,11 @@ function NoHotelCases({ ticket }) {
             'Você precisa ter confirmado pagamento antes de fazer a escolha de hospedagem' :
             ticket.isOnline ?
               'Sua modalidade de ingresso não inclui hospedagem. Prossiga para a escolha de atividades' :
-              ''}
+              null}
         </>
       </MessageContainer>
     );
-  };
+  }
+  else return null;
 }
+
